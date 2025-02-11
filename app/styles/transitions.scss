@@ -1,0 +1,130 @@
+// key frames and styles
+.transInBasic {
+  animation: transInBasic 0.3s ease-in-out;
+}
+.transInLongBasic {
+  animation: transInBasic 0.5s ease-in-out;
+}
+.transInLongerBasic {
+  animation: transInBasic 0.8s ease-in-out;
+}
+.transOutBasic {
+  animation: transOutBasic 0.3s ease-in-out;
+}
+.transleftLongBasic {
+  animation: transleftBasic 0.5s ease-in-out;
+}
+.transleftBasic {
+  animation: transleftBasic 0.3s ease-in-out;
+}
+.transleftBasicDelay {
+  animation: transleftBasic 1s ease-in-out;
+}
+.transrightBasic {
+  animation: transrightBasic 0.3s ease-in-out;
+}
+.transScale {
+  animation: transScale 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+@keyframes transInOp {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@keyframes transInBasic {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes transOutBasic {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes transleftBasic {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes transrightBasic {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes transScale {
+  from {
+    transform: scale(0.8);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes transLinearBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes transLinearBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes transLinearBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .transInBasic_md {
+    animation: transInBasic 0.3s ease-in-out;
+  }
+}
