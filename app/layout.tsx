@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/screenshort1.png",
+        url: "https://omniswift-test.netlify.app/screenshort1.png",
         width: 1200,
         height: 630,
         alt: "Omniswift Student Data",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Omniswift Student Data",
     description: "Test example filterable data for omniswift tests",
-    images: ["/screenshort1.png"],
+    images: ["https://omniswift-test.netlify.app/screenshort1.png"],
   },
 };
 
