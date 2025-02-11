@@ -83,6 +83,10 @@ yarn preview
 bun run preview
 ```
 
+## Visuals
+
+![Index](./public/screenshort1.png)
+
 ## Structure
 
 ```
@@ -107,7 +111,7 @@ Root/
 ├── public/
 │   ├── img/
 │   ├── svgs/
-│   └── screenshort1.jpeg
+│   └── screenshort1.png
 └── README.md
 ```
 
