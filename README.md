@@ -1,36 +1,116 @@
+# Omniswift
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Description
 
-First, run the development server:
+This project is built on react (Next) and uses tailwind, scss and shadcn for styling and components as well as custom animation. Efforts in place to preserve api requests.
+
+Links to packages are listed at the bottom.
+
+## Requirement
+
+- Node 20+
+- Npm or Yarn
+
+## Setup
+
+Make sure to install the dependencies first:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# npm
+npm install
+
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development Server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Start the development server on `http://localhost:3000`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# npm
+npm run dev
 
-## Learn More
+# pnpm
+pnpm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# yarn
+yarn dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# bun
+bun run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Production
 
-## Deploy on Vercel
+Build the application for production:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# npm
+npm run build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+## Structure
+
+```
+Root/
+├── app/
+│   ├── components/
+│   │   ├── Form.tsx
+│   │   ├── SelectField.tsx
+│   │   └── Loader.tsx
+│   ├── styles/
+│   │   ├── global.css
+│   │   ├── global.scss
+│   │   └── transitions.scss
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/ui/
+│   └── dialog.tsx
+├── lib/
+│   ├── axios.ts
+│   ├── store.ts
+│   └── utils.ts
+├── public/
+│   ├── img/
+│   ├── svgs/
+│   └── screenshort1.jpeg
+└── README.md
+```
+
+## Useful Link
+
+Visit the <a href="https://omniswift-test.netlify.app/" target="_blank">deployment</a> for a live preview.

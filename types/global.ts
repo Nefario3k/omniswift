@@ -1,8 +1,19 @@
 export { };
 
 declare global {
-
-    interface FormData {
+    interface Html2PdfOptions {
+        margin?: number | [number, number, number, number];
+        filename?: string;
+        image?: { type: string; quality: number };
+        html2canvas?: { scale?: number;[key: string]: any };
+        jsPDF?: {
+            unit?: string;
+            format?: string;
+            orientation?: 'portrait' | 'landscape';
+            [key: string]: any;
+        };
+    }
+    interface FilterFormData {
         age: number | string;
         state: string;
         level: string;

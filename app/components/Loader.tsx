@@ -1,5 +1,5 @@
 // components/Loader.tsx
-export default function Loader({ className }: any) {
+export default function Loader({ className }: { className: string }) {
   return (
     <div
       style={{ zIndex: 100, userSelect: "none" }}

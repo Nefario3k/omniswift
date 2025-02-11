@@ -76,7 +76,7 @@ export const apiService = {
     getLevels: () => api.get(endpoints.levels),
     getResult: (id: number) => api.post(`${endpoints.result}/${id}`),
     getGenders: () => api.get(endpoints.genders),
-    submitForm: (data: any) => api.post(endpoints.submit, data),
+    submitForm: (data: FilterFormData) => api.post(endpoints.submit, data),
 };
 
 export default api;

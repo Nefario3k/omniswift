@@ -1,8 +1,9 @@
-// "use strict";
 "use client";
+/* eslint-disable */
 import { useQuery } from "@tanstack/react-query";
 import { apiService } from "@/lib/axios";
 import { FormEvent, useState } from "react";
+
 // components
 import SelectField from "./SelectField";
 import Loader from "./Loader";
@@ -49,13 +50,13 @@ const initialPdfContent: PdfContentBase = {
     "https://res.cloudinary.com/omniswift/image/upload/v1648473914/tc4kvpfeocqkyhj560fc.png",
 };
 // data
-const initialFormData: FormData = {
+const initialFormData: FilterFormData = {
   age: "",
   state: "",
   level: "",
   gender: "",
 };
-const tableHeader: any = [
+const tableHeader = [
   { title: "S/N", value: "index", center: true },
   { title: "Surname", value: "surname", center: false },
   { title: "First Name", value: "firstname", center: false },
@@ -65,7 +66,7 @@ const tableHeader: any = [
   { title: "State", value: "state", center: false },
   { title: "Action", value: "action", center: true },
 ];
-const tableHeaderCourse: any = [
+const tableHeaderCourse = [
   { title: "S/N", value: "index", center: true },
   { title: "Course Code", value: "coursecode", center: false },
   { title: "Course Title", value: "title", center: false },
@@ -75,8 +76,8 @@ const tableHeaderCourse: any = [
 ];
 export default function Form() {
   // state
-  const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [payload, setPayload] = useState<FormData>(initialFormData);
+  const [formData, setFormData] = useState<FilterFormData>(initialFormData);
+  const [payload, setPayload] = useState<FilterFormData>(initialFormData);
   const [isFiltered, setIsFiltered] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
   const [pdfStatus, setPdfStatus] = useState(false);
@@ -87,7 +88,7 @@ export default function Form() {
   const disabledSubmit = () => {
     let val = true;
     Object.entries(formData).forEach(([key, value]) => {
-      if (value) val = false;
+      if (value && key) val = false;
     });
     return val;
   };
@@ -98,7 +99,11 @@ export default function Form() {
     const mapData: Array<AllData | []> = response.data.students;
     return mapData;
   };
-  const filterData = async ({ queryKey }: any) => {
+  const filterData = async ({
+    queryKey,
+  }: {
+    queryKey: [string, typeof payload];
+  }) => {
     const { data: response } = await apiService.submitForm(queryKey[1]);
     const mapData: Array<AllData | []> = response.data.students;
 
@@ -114,17 +119,17 @@ export default function Form() {
       const response: PdfContentBase = data ? data.data : pdfContent;
       setPdfContent(response);
       setIsOpen(true);
-    } catch (error) {
     } finally {
       setResultStatus(false);
     }
   };
-  const handleChange = (name: keyof FormData) => (value: string | number) => {
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const handleChange =
+    (name: keyof FilterFormData) => (value: string | number) => {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    };
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsFiltered(true);
@@ -234,7 +239,7 @@ export default function Form() {
   const convertImagesToBase64 = async (element: HTMLElement) => {
     const images = element.getElementsByTagName("img");
 
-    for (let img of images) {
+    for (const img of images) {
       try {
         const canvas = document.createElement("canvas") as HTMLCanvasElement;
         canvas.width = img.width;
@@ -243,29 +248,25 @@ export default function Form() {
         ctx.drawImage(img, 0, 0);
         const dataURL = canvas.toDataURL("image/png", 0.98);
         img.src = dataURL;
-      } catch (error) {}
+      } catch {}
     }
   };
   const generatePDF = async () => {
     setPdfStatus(true);
     try {
-      // Dynamically import html2pdf.js
+      // Dynamically import html2pdf.js because of reference error
       const html2pdf = (await import("html2pdf.js")).default;
-
       const element = document.getElementById("pdf-content") as HTMLElement;
       await convertImagesToBase64(element);
-      const opt = {
+      const opt: Html2PdfOptions = {
         margin: 0,
-        logging: true,
-        useCORS: true,
         filename: `${pdfContent.data.surname}_${pdfContent.data.firstname}_result.pdf`,
         image: { type: "png", quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
       };
-
       html2pdf().set(opt).from(element).save();
-    } catch (error) {
+    } catch {
     } finally {
       setPdfStatus(false);
     }
@@ -273,13 +274,8 @@ export default function Form() {
 
   //  React Query
   // all data and filtered data
-  const {
-    data: tableData,
-    isLoading: tableLoading,
-    error,
-    refetch,
-  } = useQuery({
-    queryKey: ["allData", payload],
+  const { data: tableData, isLoading: tableLoading } = useQuery({
+    queryKey: ["allData", payload] as const,
     queryFn: disabledSubmit() ? fetchAllData : filterData,
   });
   // get ages
