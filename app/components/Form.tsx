@@ -199,7 +199,9 @@ export default function Form() {
       return (
         <tbody>
           <tr className="capitalize px-6 font-bold text-sm text-dark-1">
-            <td>No data found</td>
+            <td colSpan={tableHeader.length} className="h-[300px] text-center">
+              No data found
+            </td>
           </tr>
         </tbody>
       );
@@ -231,7 +233,12 @@ export default function Form() {
       return (
         <tbody>
           <tr className="capitalize px-6 font-bold text-sm text-dark-1">
-            <td>No data found</td>
+            <td
+              colSpan={tableHeaderCourse.length}
+              className="h-[300px] text-center"
+            >
+              No data found
+            </td>
           </tr>
         </tbody>
       );
